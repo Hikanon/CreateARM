@@ -5,7 +5,7 @@ import jakarta.persistence.*;
 import java.util.Objects;
 
 @Entity
-public class Pln {
+public class Pln extends BaseEntity{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "id")
@@ -23,6 +23,7 @@ public class Pln {
     @Column(name = "id_cpec")
     private Integer idCpec;
 
+    @Override
     public int getId() {
         return id;
     }

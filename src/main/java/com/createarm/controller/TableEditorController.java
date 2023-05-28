@@ -1,6 +1,7 @@
 package com.createarm.controller;
 
 import com.createarm.configuration.AppConfig;
+import com.createarm.model.BaseEntity;
 import com.createarm.service.DataBaseInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -28,7 +29,7 @@ public class TableEditorController {
         return dataBaseInfoService;
     }
 
-    public JpaRepository<?, Integer> getJpaRepositoryByTableName(String tableName) {
+    public JpaRepository<BaseEntity, Integer> getJpaRepositoryByTableName(String tableName) {
         return appConfig.getJpaRepositoryByTableName(tableName);
     }
 

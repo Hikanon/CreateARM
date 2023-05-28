@@ -1,6 +1,7 @@
 package com.createarm.view;
 
 import com.createarm.controller.TableEditorController;
+import com.createarm.model.BaseEntity;
 import com.createarm.util.DatabaseUtils;
 import org.springframework.data.jpa.repository.JpaRepository;
 
@@ -9,13 +10,11 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import java.awt.*;
 import java.util.Collection;
+import java.util.Vector;
 
 public class TableEditor extends JFrame {
 
-    private final TableEditorController tableEditorController;
-
     public TableEditor(String tableName, TableEditorController tableEditorController) {
-        this.tableEditorController = tableEditorController;
 
         this.setTitle("Редактор таблицы %s".formatted(tableName));
         int width = 600, height = 600;
@@ -30,12 +29,14 @@ public class TableEditor extends JFrame {
         Collection<String> fields = tableEditorController.getAllTableFields(tableName);
 
         TableModel tableModel = new DefaultTableModel(DatabaseUtils.parseDataToTwoDimensionalArray(data, fields), fields.toArray());
-        JComboBox<String> combo = new JComboBox<>();
+
         JTable table = new JTable(tableModel);
 
-        int iter = 0;
         for (String field : fields) {
             if (field.contains("id_")) {
+                Collection<Integer> id = tableEditorController.getJpaRepositoryByTableName(field.substring(3)).findAll().stream()
+                        .map(BaseEntity::getId).toList();
+                JComboBox<Integer> combo = new JComboBox<>(new Vector<>(id));
                 table.getColumn(field).setCellEditor(new DefaultCellEditor(combo));
             }
         }

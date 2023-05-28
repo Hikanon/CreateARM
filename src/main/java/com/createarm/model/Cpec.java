@@ -5,7 +5,7 @@ import jakarta.persistence.*;
 import java.util.Objects;
 
 @Entity(name = "cpec")
-public class Cpec {
+public class Cpec extends BaseEntity{
     @Basic
     @Column(name = "cod")
     private String cod;
@@ -44,6 +44,7 @@ public class Cpec {
         this.nam = nam;
     }
 
+    @Override
     public int getId() {
         return id;
     }

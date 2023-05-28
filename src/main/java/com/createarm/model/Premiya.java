@@ -5,7 +5,7 @@ import jakarta.persistence.*;
 import java.util.Objects;
 
 @Entity
-public class Premiya {
+public class Premiya extends BaseEntity{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "id")
@@ -55,6 +55,7 @@ public class Premiya {
         this.summa = summa;
     }
 
+    @Override
     public int getId() {
         return id;
     }

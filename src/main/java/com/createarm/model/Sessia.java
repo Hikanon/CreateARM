@@ -5,7 +5,7 @@ import jakarta.persistence.*;
 import java.util.Objects;
 
 @Entity
-public class Sessia {
+public class Sessia extends BaseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "id")
@@ -20,6 +20,7 @@ public class Sessia {
     @Column(name = "id_mark")
     private Integer idMark;
 
+    @Override
     public int getId() {
         return id;
     }

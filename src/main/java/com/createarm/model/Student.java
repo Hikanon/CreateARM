@@ -6,7 +6,7 @@ import java.sql.Date;
 import java.util.Objects;
 
 @Entity
-public class Student {
+public class Student extends BaseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "id")
@@ -36,6 +36,7 @@ public class Student {
     @Column(name = "rost")
     private Float rost;
 
+    @Override
     public int getId() {
         return id;
     }
