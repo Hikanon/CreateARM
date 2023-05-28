@@ -120,4 +120,17 @@ public class Student {
     public int hashCode() {
         return Objects.hash(id, idGrup, fam, nam, otc, pol, rozhd, ves, rost);
     }
+
+    @Override
+    public String toString() {
+        return "id=" + id + '|' +
+                "id_grup=" + idGrup + '|' +
+                "fam=" + fam + '|' +
+                "nam=" + nam + '|' +
+                "otc=" + otc + '|' +
+                "pol=" + pol + '|' +
+                "rozhd=" + rozhd + '|' +
+                "ves=" + ves + '|' +
+                "rost=" + rost;
+    }
 }

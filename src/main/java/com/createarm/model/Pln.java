@@ -75,4 +75,13 @@ public class Pln {
     public int hashCode() {
         return Objects.hash(id, idSubj, semestr, idOtch, idCpec);
     }
+
+    @Override
+    public String toString() {
+        return "id=" + id + '|' +
+                "id_subj=" + idSubj + '|' +
+                "semestr=" + semestr + '|' +
+                "id_otch=" + idOtch + '|' +
+                "id_cpec=" + idCpec;
+    }
 }

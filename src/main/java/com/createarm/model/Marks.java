@@ -6,16 +6,16 @@ import java.util.Objects;
 
 @Entity
 public class Marks {
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @Column(name = "id")
+    private int id;
     @Basic
     @Column(name = "mark")
     private int mark;
     @Basic
     @Column(name = "nam")
     private String nam;
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Id
-    @Column(name = "id")
-    private int id;
 
     public int getMark() {
         return mark;
@@ -52,5 +52,12 @@ public class Marks {
     @Override
     public int hashCode() {
         return Objects.hash(mark, nam, id);
+    }
+
+    @Override
+    public String toString() {
+        return "id=" + id + '|' +
+                "mark=" + mark + '|' +
+                "nam=" + nam;
     }
 }

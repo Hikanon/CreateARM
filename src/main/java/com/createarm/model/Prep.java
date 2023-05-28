@@ -75,4 +75,13 @@ public class Prep {
     public int hashCode() {
         return Objects.hash(id, fam, nam, otc, idKaf);
     }
+
+    @Override
+    public String toString() {
+        return "id=" + id + '|' +
+                "fam=" + fam + '|' +
+                "nam=" + nam + '|' +
+                "otc=" + otc + '|' +
+                "id_kaf=" + idKaf;
+    }
 }

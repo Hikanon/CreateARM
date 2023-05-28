@@ -42,4 +42,10 @@ public class Otchetn {
     public int hashCode() {
         return Objects.hash(id, nam);
     }
+
+    @Override
+    public String toString() {
+        return "id=" + id + '|' +
+                "nam=" + nam;
+    }
 }

@@ -53,4 +53,11 @@ public class Subject {
     public int hashCode() {
         return Objects.hash(id, nam, idKaf);
     }
+
+    @Override
+    public String toString() {
+        return "id=" + id + '|' +
+                "nam=" + nam + '|' +
+                "id_kaf=" + idKaf;
+    }
 }

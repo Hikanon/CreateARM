@@ -64,4 +64,12 @@ public class Sessia {
     public int hashCode() {
         return Objects.hash(id, idPln, idStud, idMark);
     }
+
+    @Override
+    public String toString() {
+        return "id=" + id + '|' +
+                "id_pln=" + idPln + '|' +
+                "id_stud=" + idStud + '|' +
+                "id_mark=" + idMark;
+    }
 }

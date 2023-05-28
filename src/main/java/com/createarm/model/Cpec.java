@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 
 import java.util.Objects;
 
-@Entity
+@Entity(name = "cpec")
 public class Cpec {
     @Basic
     @Column(name = "cod")
@@ -63,5 +63,13 @@ public class Cpec {
     @Override
     public int hashCode() {
         return Objects.hash(cod, liter, nam, id);
+    }
+
+    @Override
+    public String toString() {
+        return "cod=" + cod + '|' +
+                "liter=" + liter + '|' +
+                "nam=" + nam + '|' +
+                "id=" + id;
     }
 }

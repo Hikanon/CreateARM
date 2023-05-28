@@ -53,4 +53,11 @@ public class Grup {
     public int hashCode() {
         return Objects.hash(id, nomer, idCpec);
     }
+
+    @Override
+    public String toString() {
+        return "id=" + id + '|' +
+                "nomer=" + nomer + '|' +
+                "id_cpec=" + idCpec;
+    }
 }

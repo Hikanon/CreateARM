@@ -6,6 +6,10 @@ import java.util.Objects;
 
 @Entity
 public class Premiya {
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @Column(name = "id")
+    private int id;
     @Basic
     @Column(name = "fami")
     private String fami;
@@ -18,10 +22,6 @@ public class Premiya {
     @Basic
     @Column(name = "summa")
     private Integer summa;
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Id
-    @Column(name = "id")
-    private int id;
 
     public String getFami() {
         return fami;
@@ -74,5 +74,14 @@ public class Premiya {
     @Override
     public int hashCode() {
         return Objects.hash(fami, imya, srball, summa, id);
+    }
+
+    @Override
+    public String toString() {
+        return "id=" + id + '|' +
+                "fami=" + fami + '|' +
+                "imya=" + imya + '|' +
+                "srball=" + srball + '|' +
+                "summa=" + summa;
     }
 }

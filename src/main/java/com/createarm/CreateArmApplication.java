@@ -11,7 +11,6 @@ public class CreateArmApplication {
 
 
     public static void main(String[] args) {
-//        SpringBootApplication.run(args);
         new SpringApplicationBuilder(CreateArmApplication.class)
                 .headless(false)
                 .web(WebApplicationType.NONE)
