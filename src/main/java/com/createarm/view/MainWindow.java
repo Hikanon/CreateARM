@@ -21,5 +21,6 @@ public class MainWindow extends JFrame {
         this.setLocation(screenSize.width / 2 - width / 2, screenSize.height / 2 - height / 2);
         this.add(springPanel);
         this.setVisible(true);
+
     }
 }

@@ -6,23 +6,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.swing.*;
+import java.awt.*;
 import java.util.Collection;
 
 @Component
 public class SpringPanel extends JPanel {
 
-    private final TableEditorFactory tableEditorFactory;
-    private final DataBaseInfoController dataBaseInfoController;
-
     @Autowired
     public SpringPanel(TableEditorFactory tableEditorFactory, DataBaseInfoController dataBaseInfoController) {
-        this.tableEditorFactory = tableEditorFactory;
-        this.dataBaseInfoController = dataBaseInfoController;
 
-        this.add(new JLabel("Выберете таблицу"));
+        this.add(new JLabel("Выберете таблицу"), BorderLayout.CENTER);
 
         JComboBox<String> jComboBox = new JComboBox<>();
-        Collection<String> allTables = this.dataBaseInfoController.getAllTables("public");
+        Collection<String> allTables = dataBaseInfoController.getAllTables("public");
         for (String s : allTables) {
             jComboBox.addItem(s);
         }
