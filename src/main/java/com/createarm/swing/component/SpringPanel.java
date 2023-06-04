@@ -14,8 +14,10 @@ public class SpringPanel extends JPanel {
 
     @Autowired
     public SpringPanel(TableEditorFactory tableEditorFactory, DataBaseInfoController dataBaseInfoController) {
-
-        this.add(new JLabel("Выберете таблицу"), BorderLayout.CENTER);
+        this.setLayout(new GridLayout(3, 1, 15, 30));
+        JLabel chooseTableLabel = new JLabel("Выберете таблицу");
+        chooseTableLabel.setHorizontalAlignment(JLabel.CENTER);
+        this.add(chooseTableLabel, BorderLayout.CENTER);
 
         JComboBox<String> jComboBox = new JComboBox<>();
         Collection<String> allTables = dataBaseInfoController.getAllTables("public");

@@ -11,10 +11,10 @@ public class CreateArmApplication {
 
 
     public static void main(String[] args) {
-        new SpringApplicationBuilder(CreateArmApplication.class)
+        javax.swing.SwingUtilities.invokeLater(() -> new SpringApplicationBuilder(CreateArmApplication.class)
                 .headless(false)
                 .web(WebApplicationType.NONE)
-                .run(args);
+                .run(args));
     }
 
 

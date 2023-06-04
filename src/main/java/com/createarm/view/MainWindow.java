@@ -1,5 +1,6 @@
 package com.createarm.view;
 
+import com.createarm.configuration.AppConfig;
 import com.createarm.swing.component.SpringPanel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -8,18 +9,17 @@ import javax.swing.*;
 import java.awt.*;
 
 @Component
-public class MainWindow extends JFrame {
+final public class MainWindow extends JFrame {
 
     @Autowired
-    public MainWindow(SpringPanel springPanel) {
+    public MainWindow(final SpringPanel springPanel) {
         super("Выбор таблицы");
+        this.setIconImage(AppConfig.getImage());
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        int width = 600;
-        int height = 600;
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-        this.setSize(width, height);
-        this.setLocation(screenSize.width / 2 - width / 2, screenSize.height / 2 - height / 2);
-        this.add(springPanel);
+        this.setLocation(screenSize.width / 2 - 100, screenSize.height / 2 - 100);
+        this.getContentPane().add(springPanel);
+        this.pack();
         this.setVisible(true);
 
     }

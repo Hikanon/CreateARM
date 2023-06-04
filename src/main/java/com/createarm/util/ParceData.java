@@ -2,9 +2,9 @@ package com.createarm.util;
 
 import java.util.Collection;
 
-public class DatabaseUtils {
+public class ParceData {
 
-    public static Object[][] parseDataToTwoDimensionalArray(Collection<?> data, Collection<String> fields) {
+    public static Object[][] parseDataArray(Collection<?> data, Collection<String> fields) {
         Object[][] result = new Object[data.size()][fields.size()];
 
         int row = 0;
@@ -25,4 +25,5 @@ public class DatabaseUtils {
         }
         return result;
     }
+
 }
