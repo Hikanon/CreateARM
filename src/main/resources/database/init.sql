@@ -9,36 +9,36 @@ SET xmloption = content;
 SET client_min_messages = warning;
 SET row_security = off;
 
-CREATE TABLE public.cpec (
+CREATE TABLE IF NOT EXISTS public.cpec (
                              cod character varying(255) NOT NULL,
                              liter character varying(255),
                              nam character varying(255),
                              id integer NOT NULL
 );
 
-CREATE TABLE public.grup (
+CREATE TABLE IF NOT EXISTS public.grup (
                              id integer NOT NULL,
                              nomer character varying(255),
                              id_cpec integer
 );
 
-CREATE TABLE public.kafedra (
+CREATE TABLE IF NOT EXISTS public.kafedra (
                                 id integer NOT NULL,
                                 nam character varying(255)
 );
 
-CREATE TABLE public.marks (
+CREATE TABLE IF NOT EXISTS public.marks (
                               mark integer NOT NULL,
                               nam character varying(255),
                               id integer NOT NULL
 );
 
-CREATE TABLE public.otchetn (
+CREATE TABLE IF NOT EXISTS public.otchetn (
                                 id integer NOT NULL,
                                 nam character varying(255)
 );
 
-CREATE TABLE public.pln (
+CREATE TABLE IF NOT EXISTS public.pln (
                             id integer NOT NULL,
                             id_subj integer,
                             semestr integer,
@@ -46,7 +46,7 @@ CREATE TABLE public.pln (
                             id_cpec integer
 );
 
-CREATE TABLE public.premiya (
+CREATE TABLE IF NOT EXISTS public.premiya (
                                 fami character varying(255),
                                 imya character varying(255),
                                 srball real,
@@ -54,7 +54,7 @@ CREATE TABLE public.premiya (
                                 id integer NOT NULL
 );
 
-CREATE TABLE public.prep (
+CREATE TABLE IF NOT EXISTS public.prep (
                              id integer NOT NULL,
                              fam character varying(255),
                              nam character varying(255),
@@ -62,21 +62,21 @@ CREATE TABLE public.prep (
                              id_kaf integer
 );
 
-CREATE TABLE public.sessia (
+CREATE TABLE IF NOT EXISTS public.sessia (
                                id integer NOT NULL,
                                id_pln integer,
                                id_stud integer,
                                id_mark integer
 );
 
-CREATE TABLE public.sessia (
+CREATE TABLE IF NOT EXISTS public.sessia (
                                id integer NOT NULL,
                                id_pln integer,
                                id_stud integer,
                                id_mark integer
 );
 
-CREATE TABLE public.student (
+CREATE TABLE IF NOT EXISTS public.student (
                                 id integer NOT NULL,
                                 id_grup integer,
                                 fam character varying(255),
@@ -88,7 +88,7 @@ CREATE TABLE public.student (
                                 rost real
 );
 
-CREATE TABLE public.subject (
+CREATE TABLE IF NOT EXISTS public.subject (
                                 id integer NOT NULL,
                                 nam character varying(255),
                                 id_kaf integer

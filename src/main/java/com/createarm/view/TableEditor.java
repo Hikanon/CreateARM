@@ -3,6 +3,7 @@ package com.createarm.view;
 import com.createarm.configuration.AppConfig;
 import com.createarm.controller.TableEditorController;
 import com.createarm.util.ParceData;
+import org.springframework.dao.DataAccessException;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -129,27 +130,31 @@ final public class TableEditor extends JFrame {
             JToolBar toolBar = new JToolBar();
             JButton addButton = new JButton("Сохранить");
             addButton.addActionListener(e -> {
-                Object[] newRow = new Object[fields.size()];
-                int iter = 0;
-                for (String field : fields) {
-                    JComponent component = components.get(field);
-                    if (component instanceof JTextField) {
-                        newRow[iter] = ((JTextField) component).getText();
+                try {
+                    Object[] newRow = new Object[fields.size()];
+                    int iter = 0;
+                    for (String field : fields) {
+                        JComponent component = components.get(field);
+                        if (component instanceof JTextField) {
+                            newRow[iter] = ((JTextField) component).getText();
+                        }
+                        if (component instanceof JComboBox) {
+                            newRow[iter] = ((JComboBox<?>) component).getSelectedItem();
+                        }
+                        iter++;
                     }
-                    if (component instanceof JComboBox) {
-                        newRow[iter] = ((JComboBox<?>) component).getSelectedItem();
+                    tableEditorController.saveEntity(tableName, newRow, fields);
+                    DefaultTableModel model = (DefaultTableModel) table.getModel();
+                    if (!addRow) {
+                        model.removeRow(selectedRow);
+                        model.insertRow(selectedRow, newRow);
+                    } else {
+                        model.addRow(newRow);
                     }
-                    iter++;
+                    this.dispose();
+                }catch (DataAccessException exception) {
+                    new ErrorDialog(this, true);
                 }
-                DefaultTableModel model = (DefaultTableModel) table.getModel();
-                if (!addRow) {
-                    model.removeRow(selectedRow);
-                    model.insertRow(selectedRow, newRow);
-                } else {
-                    model.addRow(newRow);
-                }
-                tableEditorController.saveEntity(tableName, newRow, fields);
-                this.dispose();
             });
             toolBar.add(addButton);
             this.add(toolBar, BorderLayout.PAGE_START);
@@ -200,5 +205,30 @@ final public class TableEditor extends JFrame {
             this.setVisible(true);
         }
 
+    }
+
+    static final class ErrorDialog extends JDialog {
+
+        public ErrorDialog(Dialog owner, boolean modal) {
+            super(owner, modal);
+            this.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+            this.setTitle("Ошибка ввода");
+            this.setIconImage(AppConfig.getImage());
+            this.setResizable(false);
+            Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+            this.setLocation(screenSize.width / 2 - 100, screenSize.height / 2 - 100);
+            JPanel mainPanel = new JPanel();
+            mainPanel.setLayout(new GridLayout(2, 1, 20, 10));
+            JLabel errorText = new JLabel("Неверный ввод данных");
+            errorText.setHorizontalAlignment(JTextField.CENTER);
+            JButton okButton = new JButton("Закрыть");
+            okButton.addActionListener(e -> this.dispose());
+            mainPanel.add(errorText);
+            mainPanel.add(okButton);
+            this.setLayout(new BorderLayout());
+            this.getContentPane().add(mainPanel, BorderLayout.CENTER);
+            this.pack();
+            this.setVisible(true);
+        }
     }
 }
